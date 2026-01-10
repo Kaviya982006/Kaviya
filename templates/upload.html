@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Upload Dataset</h2>
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="file" accept=".csv">
+  <button type="submit">Upload</button>
+</form>
+{% if preview %}
+  <h3>Preview</h3>
+  {{ preview|safe }}
+{% endif %}
+{% endblock %}

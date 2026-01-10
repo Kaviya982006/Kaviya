@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Prediction</h2>
+<form method="post" class="grid-form">
+
+<!-- Algorithm selection -->
+<label>Choose Algorithm</label>
+<select name="algorithm">
+<option>KNN</option>
+<option>Logistic Regression</option>
+<option>Decision Tree</option>
+<option>Random Forest</option>
+<option>XGBoost</option>
+</select>
+
+<!-- Input fields -->
+<label>Profile Pic</label>
+<input type="number" name="profile_pic" min="0" max="1" placeholder="0 = No, 1 = Yes" required>
+
+<label>Nums/Length Username</label>
+<input type="number" step="any" name="nums_username" placeholder="e.g., 5.0" required>
+
+<label>Fullname Words</label>
+<input type="number" name="fullname_words" placeholder="e.g., 2" required>
+
+<label>Nums/Length Fullname</label>
+<input type="number" step="any" name="nums_fullname" placeholder="e.g., 3.5" required>
+
+<label>Name == Username</label>
+<input type="number" name="name_equals_username" min="0" max="1" placeholder="0 = No, 1 = Yes" required>
+
+<label>Description Length</label>
+<input type="number" name="description_length" placeholder="e.g., 120" required>
+
+<label>External URL</label>
+<input type="number" name="external_url" min="0" max="1" placeholder="0 = No, 1 = Yes" required>
+
+<label>Private</label>
+<input type="number" name="private" min="0" max="1" placeholder="0 = Public, 1 = Private" required>
+
+<label>#Posts</label>
+<input type="number" name="posts" placeholder="e.g., 50" required>
+
+<label>#Followers</label>
+<input type="number" name="followers" placeholder="e.g., 200" required>
+
+<label>#Follows</label>
+<input type="number" name="follows" placeholder="e.g., 180" required>
+
+<button type="submit">Predict</button>
+</form>
+
+{% if result %}
+<div class="result">
+---------------------------------------------------------<br>
+| Prediction                                            |<br>
+---------------------------------------------------------<br>
+  
+    {% if result == 'Fake' %}
+      <div class="flash error">⚠️ Instagram Account is: <strong>{{ result }}</strong></div>
+    {% else %}
+      <div class="flash success">✅ Instagram Account is: <strong>{{ result }}</strong></div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+
+

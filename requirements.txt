@@ -1,3 +1,4 @@
+--only-binary :all:
 flask
 gunicorn==21.2.0
 pandas==1.5.3

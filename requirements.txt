@@ -3,7 +3,7 @@ flask
 gunicorn==21.2.0
 pandas==2.2.3
 numpy==2.2.1
-scikit-learn==1.2.2
+scikit-learn
 matplotlib
 seaborn
 xgboost==2.0.3

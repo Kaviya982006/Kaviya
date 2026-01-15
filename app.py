@@ -120,6 +120,37 @@ def performance():
 @app.route("/chart")
 def chart():
     return render_template("chart.html")
+from flask import jsonify
+import os
+
+@app.route("/debug")
+def debug():
+    debug_info = {}
+
+    # Check models
+    model_files = ["dt.pkl", "knn.pkl", "log.pkl", "model.pkl", "rf.pkl", "scaler.pkl", "xgb.pkl"]
+    debug_info["models_found"] = [f for f in model_files if os.path.exists(f)]
+
+    # Check templates
+    debug_info["templates_found"] = os.listdir("templates") if os.path.exists("templates") else []
+
+    # Check static files
+    debug_info["static_found"] = os.listdir("static") if os.path.exists("static") else []
+
+    # Python + package versions
+    try:
+        import pandas, sklearn, numpy
+        debug_info["versions"] = {
+            "python": os.sys.version,
+            "pandas": pandas.__version__,
+            "scikit-learn": sklearn.__version__,
+            "numpy": numpy.__version__
+        }
+    except Exception as e:
+        debug_info["versions_error"] = str(e)
+
+    return jsonify(debug_info)
+
 
 
 if __name__ == "__main__":
